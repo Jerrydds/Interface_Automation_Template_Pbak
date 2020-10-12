@@ -10,8 +10,13 @@ class TestGetFrontQSortL:
 
     @allure.feature('产品')
     @allure.story('V4_产品前端筛选_排序校验')
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.step('测试步骤001')
     def test_001_Web全球英语_前端筛选条件周转化率(self):
         expect, authentic = self.run.go_on_run(1)
+        allure.attach('请求参数', '{"Version":"4.0","Method":"GET","Cookies":"",'
+                              '"Param":{"site":0,"lang":"en","Platform":"2","pageSize":20,"pageNum":1,'
+                              '"routing":"20_04_EBAY_TAB1","CacheType":2,"q":{"C_WCONR":""},"sort":""}}')
         assert expect in authentic
 
     @allure.feature('产品')

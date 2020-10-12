@@ -1,4 +1,4 @@
-import unittest, allure
+import unittest, allure, pytest
 from Main.run_test import RunTest
 
 
@@ -9,8 +9,13 @@ class TestGetRecP:
 
     @allure.feature('产品')
     @allure.story('V4_推荐产品')
+    @allure.severity(allure.severity_level.BLOCKER)
+    @allure.step('测试步骤001')
     def test_001_Web全球英语_缓存POST方式(self):
         expect, authentic = self.run.go_on_run(1)
+        allure.attach('请求参数', '{"Version":"4.0","Method":"GET","Cookies":"",'
+                              '"Param":{"site":0,"lang":"en","Platform":"2","pageSize":20,"pageNum":1,'
+                              '"routing":"20_04_EBAY_BESTSALE","CacheType":2}}')
         assert expect in authentic
 
     @allure.feature('产品')
@@ -204,7 +209,6 @@ class TestGetRecP:
     def test_033_参数值_缓存类型为空(self):
         expect, authentic = self.run.go_on_run(33)
         assert expect in authentic
-
 
     # def test_001(self):
     #     expect, authentic = self.run.go_on_run(1)
